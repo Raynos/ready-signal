@@ -12,7 +12,7 @@ function Ready() {
 
     function ready(callback) {
         if (callback) {
-            em.on("ready", callback)
+            em.once("ready", callback)
         } else {
             em.emit("ready")
         }
