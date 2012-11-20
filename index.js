@@ -1,28 +1,28 @@
-var CachedEmitter = require("cached-events")
-    , toArray = require("to-array")
-
 module.exports = Ready
 
 function Ready() {
-    var em = CachedEmitter()
+    var ready = false
+        , args
+        , listeners = []
 
-    ready.emit = emit
+    onready.emit = onready
 
-    return ready
+    return onready
 
-    function ready(callback) {
-        if (callback) {
-            em.once("ready", callback)
-        } else {
-            em.emit("ready")
+    function onready(callback) {
+        if (typeof callback !== "function" && !ready) {
+            ready = true
+            args = arguments
+            listeners.forEach(call)
+            return (listeners = [])
+        } else if (ready) {
+            return callback()
         }
-    }
 
-    function emit() {
-        var args = toArray(arguments)
+        listeners.push(callback)
 
-        args.unshift("ready")
-
-        em.emit.apply(em, args)
+        function call(cb) {
+            cb.apply(null, args)
+        }
     }
 }
