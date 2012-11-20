@@ -1,6 +1,6 @@
 {
   "name": "ready-signal",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A ready signal. Wait for ready and signal it's ready",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
@@ -16,8 +16,7 @@
     "url": "https://github.com/Raynos/ready-signal/issues",
     "email": "raynos2@gmail.com"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "tap": "~0.3.1"
   },
