@@ -2,8 +2,8 @@ module.exports = Ready
 
 function Ready() {
     var ready = false
-        , args
-        , listeners = []
+    var listeners = []
+    var args
 
     onready.emit = onready
 
@@ -16,13 +16,13 @@ function Ready() {
             listeners.forEach(call)
             return (listeners = [])
         } else if (ready) {
-            return callback()
+            return call(callback)
         }
 
         listeners.push(callback)
+    }
 
-        function call(cb) {
-            cb.apply(null, args)
-        }
+    function call(cb) {
+        cb.apply(null, args)
     }
 }
