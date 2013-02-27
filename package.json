@@ -1,6 +1,6 @@
 {
   "name": "ready-signal",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A ready signal. Wait for ready and signal it's ready",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
