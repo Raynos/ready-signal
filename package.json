@@ -18,8 +18,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "tap": "~0.3.1",
-    "docserv": "0.0.0"
+    "mocha": "~1.20.1",
+    "after": "0.8.1"
   },
   "licenses": [
     {
@@ -28,6 +28,6 @@
     }
   ],
   "scripts": {
-    "test": "tap --stderr --tap ./test"
+    "test": "mocha --ui qunit --reporter list ./test.js"
   }
 }
