@@ -16,7 +16,7 @@ function Ready() {
             listeners.forEach(call)
             return (listeners = [])
         } else if (ready) {
-            return call(callback)
+            return callback && call(callback)
         }
 
         listeners.push(callback)
