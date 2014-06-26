@@ -1,7 +1,6 @@
 module.exports = Ready
 
 function Ready() {
-    var ready = false
     var listeners = []
     var args
 
@@ -10,13 +9,14 @@ function Ready() {
     return onready
 
     function onready(callback) {
-        if (typeof callback !== "function" && !ready) {
-            ready = true
+        if (typeof callback !== "function" && listeners) {
             args = arguments
-            listeners.forEach(call)
-            return (listeners = [])
-        } else if (ready) {
-            return call(callback)
+            var list = listeners
+            listeners = undefined
+            list.forEach(call)
+            return;
+        } else if (!listeners) {
+            return callback && call(callback)
         }
 
         listeners.push(callback)
