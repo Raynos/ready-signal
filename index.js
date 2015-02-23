@@ -4,14 +4,7 @@ function Ready() {
     var listeners = [];
     var args = null;
 
-    return onReady;
-
     function onReady(callback) {
-        if (typeof callback !== "function" && !args) {
-            args = Array.prototype.slice.call(arguments);
-            listeners.forEach(call);
-            return (listeners = []);
-        }
         if (typeof callback === "function") {
             if (args) {
                 call(callback);
@@ -21,7 +14,17 @@ function Ready() {
         }
     }
 
+    onReady.signal = function signalReady() {
+        if (args) return; // TODO: error? observe? just use last?
+        args = Array.prototype.slice.call(arguments);
+        listeners.forEach(call);
+        listeners = [];
+        return;
+    };
+
     function call(cb) {
         cb.apply(null, args);
     }
+
+    return onReady;
 }
