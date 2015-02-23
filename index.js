@@ -11,11 +11,14 @@ function Ready() {
             args = Array.prototype.slice.call(arguments);
             listeners.forEach(call);
             return (listeners = []);
-        } else if (args) {
-            return callback && call(callback);
         }
-
-        listeners.push(callback);
+        if (typeof callback === "function") {
+            if (args) {
+                call(callback);
+            } else {
+                listeners.push(callback);
+            }
+        }
     }
 
     function call(cb) {
