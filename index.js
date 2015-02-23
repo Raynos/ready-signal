@@ -1,28 +1,28 @@
-module.exports = Ready
+module.exports = Ready;
 
 function Ready() {
-    var ready = false
-    var listeners = []
-    var args
+    var listeners = [];
+    var args = null;
 
-    onready.emit = onready
-
-    return onready
-
-    function onready(callback) {
-        if (typeof callback !== "function" && !ready) {
-            ready = true
-            args = arguments
-            listeners.forEach(call)
-            return (listeners = [])
-        } else if (ready) {
-            return callback && call(callback)
+    function onReady(callback) {
+        if (typeof callback === "function") {
+            if (args) {
+                callback.apply(null, args);
+            } else {
+                listeners.push(callback);
+            }
         }
-
-        listeners.push(callback)
     }
 
-    function call(cb) {
-        cb.apply(null, args)
-    }
+    onReady.signal = function signalReady() {
+        if (args) return; // TODO: error? observe? just use last?
+        args = Array.prototype.slice.call(arguments);
+        for (var i = 0; i < listeners.length; i++) {
+            listeners[i].apply(null, args);
+        }
+        listeners = [];
+        return;
+    };
+
+    return onReady;
 }
