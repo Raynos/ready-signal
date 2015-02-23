@@ -10,7 +10,7 @@ function Ready() {
 
     function onReady(callback) {
         if (typeof callback !== "function" && !args) {
-            args = arguments;
+            args = Array.prototype.slice.call(arguments);
             listeners.forEach(call);
             return (listeners = []);
         } else if (args) {
