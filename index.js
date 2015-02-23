@@ -17,7 +17,9 @@ function Ready() {
     onReady.signal = function signalReady() {
         if (args) return; // TODO: error? observe? just use last?
         args = Array.prototype.slice.call(arguments);
-        listeners.forEach(call);
+        for (var i = 0; i < listeners.length; i++) {
+            call(listeners[i]);
+        }
         listeners = [];
         return;
     };
