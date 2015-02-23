@@ -7,7 +7,7 @@ function Ready() {
     function onReady(callback) {
         if (typeof callback === "function") {
             if (args) {
-                call(callback);
+                callback.apply(null, args);
             } else {
                 listeners.push(callback);
             }
@@ -18,15 +18,11 @@ function Ready() {
         if (args) return; // TODO: error? observe? just use last?
         args = Array.prototype.slice.call(arguments);
         for (var i = 0; i < listeners.length; i++) {
-            call(listeners[i]);
+            listeners[i].apply(null, args);
         }
         listeners = [];
         return;
     };
-
-    function call(cb) {
-        cb.apply(null, args);
-    }
 
     return onReady;
 }
