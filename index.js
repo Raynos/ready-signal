@@ -1,21 +1,19 @@
 module.exports = Ready;
 
 function Ready() {
-    var ready = false;
     var listeners = [];
-    var args;
+    var args = null;
 
     onReady.emit = onReady;
 
     return onReady;
 
     function onReady(callback) {
-        if (typeof callback !== "function" && !ready) {
-            ready = true;
+        if (typeof callback !== "function" && !args) {
             args = arguments;
             listeners.forEach(call);
             return (listeners = []);
-        } else if (ready) {
+        } else if (args) {
             return callback && call(callback);
         }
 
