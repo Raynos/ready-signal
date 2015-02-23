@@ -3,7 +3,8 @@ var after = require('after');
 var Ready = require('./');
 
 test('no callbacks', function() {
-    Ready()();
+    var ready = Ready();
+    ready.signal();
 });
 
 test('single callback', function(done) {
@@ -12,7 +13,7 @@ test('single callback', function(done) {
         done();
     });
 
-    ready();
+    ready.signal();
 });
 
 test('multiple callbacks', function(done) {
@@ -23,7 +24,7 @@ test('multiple callbacks', function(done) {
     ready(done);
     ready(done);
 
-    ready();
+    ready.signal();
 });
 
 test('ignore second trigger', function() {
@@ -33,9 +34,9 @@ test('ignore second trigger', function() {
         ++count;
     });
 
-    ready();
-    ready();
-    ready();
+    ready.signal();
+    ready.signal();
+    ready.signal();
 
     assert(count === 1);
 });
@@ -43,7 +44,7 @@ test('ignore second trigger', function() {
 test('fire immediately after trigger', function(done) {
     var ready = Ready();
 
-    ready();
+    ready.signal();
 
     ready(function() {
         done();
