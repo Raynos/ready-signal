@@ -4,8 +4,6 @@ function Ready() {
     var listeners = [];
     var args = null;
 
-    onReady.emit = onReady;
-
     return onReady;
 
     function onReady(callback) {
