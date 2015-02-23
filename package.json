@@ -1,6 +1,6 @@
 {
   "name": "ready-signal",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "A ready signal. Wait for ready and signal it's ready",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
@@ -9,7 +9,6 @@
   "homepage": "https://github.com/Raynos/ready-signal",
   "contributors": [
     {
-      "name": "Jake Verbaten",
       "name": "Joshua T Corbin"
     }
   ],
