@@ -5,11 +5,11 @@ function Ready() {
     var listeners = [];
     var args;
 
-    onready.emit = onready;
+    onReady.emit = onReady;
 
-    return onready;
+    return onReady;
 
-    function onready(callback) {
+    function onReady(callback) {
         if (typeof callback !== "function" && !ready) {
             ready = true;
             args = arguments;
