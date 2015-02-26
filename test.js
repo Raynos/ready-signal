@@ -1,6 +1,7 @@
 var assert = require('assert');
 var after = require('after');
 var Ready = require('./');
+var CountedReady = require('./counted.js');
 
 test('no callbacks', function() {
     var ready = Ready();
@@ -50,3 +51,20 @@ test('fire immediately after trigger', function(done) {
         done();
     });
 });
+
+test('counter', function (done) {
+    var ready = CountedReady(3);
+    var called = false;
+
+    ready(function () {
+        called = true;
+    })
+
+    ready.signal();
+    ready.signal();
+    assert(called === false);
+    ready.signal();
+    assert(called === true);
+
+    done();
+})
