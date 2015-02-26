@@ -28,6 +28,24 @@ r3(function ready(ev) {
 r3.signal("event data")
 ```
 
+## Counted example
+
+```js
+var CountedReady = require("ready-signal/counted")
+
+var counted = CountedReady(3)
+
+counted(function () {
+   console.log("called after 3 times")
+})
+
+counted.signal()
+counted.signal()
+console.log("before 3rd")
+counted.signal()
+console.log("after 3rd")
+```
+
 ## Installation
 
 `npm install ready-signal`
