@@ -8,6 +8,7 @@ A ready signal. Wait for ready and signal it's ready
 var Ready = require("ready-signal")
 var r1 = Ready()
 var r2 = Ready()
+var r3 = Ready()
 
 r1(function onReady() {
     console.log("r1 ready")
