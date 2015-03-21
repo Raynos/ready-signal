@@ -12,7 +12,7 @@ function CountedReadySignal(n) {
 
     ready.signal = function newSignal() {
         if (--counter === 0) {
-            oldSignal();
+            oldSignal.apply(this, arguments);
         }
     };
 
