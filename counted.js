@@ -5,13 +5,13 @@ var ReadySignal = require('./index.js');
 module.exports = CountedReadySignal;
 
 function CountedReadySignal(n) {
-    var counter = n;
     var ready = ReadySignal();
+    ready.counter = n;
 
     var oldSignal = ready.signal;
 
     ready.signal = function newSignal() {
-        if (--counter === 0) {
+        if (--ready.counter === 0) {
             oldSignal.apply(this, arguments);
         }
     };
